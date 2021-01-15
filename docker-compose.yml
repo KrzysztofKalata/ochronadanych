@@ -1,7 +1,7 @@
 version: '2'
 services:
-  webapp:
-    build: webapp
+  appweb:
+    build: appweb
     ports:
       - "8000:8000"
     env_file: .env
