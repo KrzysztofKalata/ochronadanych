@@ -1,0 +1,23 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a>Hasła</a>
+                <a>Loginy</a>
+                <a>Baza danych</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+            <h1>Trwa wczytywanie strony...</h1>
+        </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/profile">Panel uzytkownika</a>
+                <a href="/publicnotes">Publiczne notatki</a>
+                <a href="/privatenotes">Prywatne notatki</a>
+                <a href="/privatenotessecure">Szyfrowane notatki</a>
+                <a href="/sharednotes">Współdzielone notatki</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+
+            <h3>Twoja tajna notatka:</h3>
+            <ol>
+                Tytul: {{secure_note.title}}<br>
+                Tresc: {{secure_note.content}}
+            </ol>
+
+            <footer>
+                <ul>
+                    <li>Ochrona danych w systemach informatycznych 2020</li>
+                </ul>
+            </footer>
+        </body>
+</html>

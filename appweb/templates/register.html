@@ -1,0 +1,53 @@
+<!doctype>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css"></link>
+        <script src="/static/main.js" defer></script>
+    </head>
+        <body>
+            <div class="navigationBar">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a class="active" href="/register">Register</a>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <h1>Formularz rejestracyjny</h1>
+            <h4>Witamy w formularzu rejestracyjnym, proszę podaj nam swoje dane:</h4>
+            <form action="/register" method="POST" id ="register" enctype="multipart/form-data">
+                <ul>
+                    <li>Twoja UNIKATOWA nazwa użytkownika (moze składać się z samych liter):</li>
+                    <li><input type="text", id="login" name="login", placeholder="Nazwa użytkownika"></li>
+                    <li>Twoje super tajne haslo:</li>
+                    <li><input type="password", id="password" name="password", placeholder="Hasło"></li>
+                    <li>I jeszcze raz poproszę, to samo!:</li>
+                    <li><input type="password", id="confirmPassword" name="confirmPassword", placeholder="Powtórzone hasło"></li>
+                    <li>A ten guziczek zadziała jak spełnisz wszystkie waruneczki</li>
+                    <li><input type="submit", id="submit", name="submit", value="Zarejestruj" ></li>
+                </ul>
+            </form>
+
+            <h4>Pssst, dobre hasło zawiera przynajniej:</h4>
+            <ul>
+                <li>- 10 znaków,</li>
+                <li>- przynajmniej jedną duza i mala litere,</li>
+                <li>- chociaz jeden znak specjalny,</li>
+                <li>- posiada entropie przynajmniej 3 (Nie martw się, wyliczymy ją za Ciebie).</li>
+            </ul>
+            <h4>Jezeli nie spełnisz tych warunkow zostaniesz przekierowany na ta strone ponownie.</h4>
+            <footer>
+                <ul>
+                    <li>Ochrona danych w systemach informatycznych 2020</li>
+                </ul>
+            </footer>
+        </body>
+</html>

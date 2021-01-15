@@ -1,0 +1,61 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a class="active" href="/profile">Panel uzytkownika</a>
+                <a href="/publicnotes">Publiczne notatki</a>
+                <a href="/privatenotes">Prywatne notatki</a>
+                <a href="/privatenotessecure">Szyfrowane notatki</a>
+                <a href="/sharednotes">Współdzielone notatki</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <h3>Login: {{profile_informations.get('login')}}</h3>
+
+            <h3>Adresy IP, z których ktoś łączył sie do tego konta:</h3>
+            <ol>
+                {% for address in addresses %}
+                    <li>
+                        Adres IP: {{address.ipAddress}}
+                    </li>
+                {% endfor %}
+            </ol>
+
+            <form action="/logout" method="POST" id ="logout">
+                <h3>Tutaj mozesz sie wylogowac, ale będziemy tęsknić ;(</h3>
+                <ul>                  
+                    <li><input type="submit", id="submit", name="submit", value="Wyloguj się" ></li>
+                </ul>
+            </form>
+
+            <h3>Tu mozesz zmienic swoje hasło, ale musi być równie bezpieczne!</h3>
+            <form action="/changepassword" method="POST" id ="changepassword" enctype="multipart/form-data">
+                <ul>
+                    <li>Twoje stare tajne haslo:</li>
+                    <li><input type="password", id="oldpassword" name="oldpassword", placeholder="Stare hasło"></li>
+                    <li>Twoje nowe tajne haslo:</li>
+                    <li><input type="password", id="password" name="password", placeholder="Nowe hasło"></li>
+                    <li>I jeszcze raz poproszę, to samo!:</li>
+                    <li><input type="password", id="confirmPassword" name="confirmPassword", placeholder="Powtórzone hasło"></li>
+                    <li><input type="submit", id="submit", name="submit", value="Zmien haslo" ></li>
+                </ul>
+            </form>
+
+            <footer>
+                <ul>
+                    <li>Ochrona danych w systemach informatycznych 2020</li>
+                </ul>
+            </footer>
+        </body>
+</html>

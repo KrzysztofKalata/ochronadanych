@@ -1,0 +1,36 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/">Home</a>
+                <a class ="active" href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form action="/login" method="POST" id ="register" enctype="multipart/form-data">
+                <ul>
+                    <li>Podaj login:</li>
+                    <li><input type="text", id="login" name="login", placeholder="Nazwa użytkownika"></li>
+                    <li>Podaj hasło:</li>
+                    <li><input type="password", id="password" name="password", placeholder="Hasło"></li>  
+                    <li><input type="submit", id="submit", name="submit", value="Zaloguj się"></li>
+                </ul>
+            </form>
+            <footer>
+                <ul>
+                    <li>Ochrona danych w systemach informatycznych 2020</li>
+                </ul>
+            </footer>
+        </body>
+</html>

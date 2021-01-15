@@ -1,0 +1,53 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/profile">Panel uzytkownika</a>
+                <a class="active" href="/publicnotes">Publiczne notatki</a>
+                <a href="/privatenotes">Prywatne notatki</a>
+                <a href="/privatenotessecure">Szyfrowane notatki</a>
+                <a href="/sharednotes">Współdzielone notatki</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+
+            <h3>Publiczne notatki:</h3>
+            <ol>
+                {% for public_note in public_notes %}
+                    <li>
+                        Tytul: {{public_note.title}}<br>
+                        Tresc: {{public_note.content}}<br>
+                        Tworca: {{public_note.owner}}
+                    </li>
+                {% endfor %}
+            </ol>
+
+            <h3>Dodaj publiczną notatkę!</h3>
+            <form action="/publicnotes" method="POST" id ="addpublicnote" enctype="multipart/form-data">
+                <ul>
+                    <li>Unikalny tytul:</li>
+                    <li><input type="title", id="title" name="title", placeholder="Tytul"></li>
+                    <li>Tresc notatki:</li>
+                    <li><input type="content", id="content" name="content", placeholder="Treść notatki"></li>
+                    <li><input type="submit", id="submit", name="submit", value="Opublikuj notatkę" ></li>
+                </ul>
+            </form>
+
+            <footer>
+                <ul>
+                    <li>Ochrona danych w systemach informatycznych 2020</li>
+                </ul>
+            </footer>
+        </body>
+</html>
